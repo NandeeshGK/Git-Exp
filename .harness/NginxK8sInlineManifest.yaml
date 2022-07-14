@@ -1,0 +1,34 @@
+---
+pipeline:
+  template:
+    templateRef: "org.Nginxk8smanifests"
+    versionLabel: "v1"
+    templateInputs:
+      stages:
+      - stage:
+          identifier: "Deployk8smanifests"
+          template:
+            templateInputs:
+              type: "Deployment"
+              spec:
+                serviceConfig:
+                  serviceRef: "<+input>"
+                  serviceDefinition:
+                    type: "Kubernetes"
+                    spec:
+                      artifacts:
+                        primary:
+                          type: "DockerRegistry"
+                          spec:
+                            tag: "<+input>"
+                infrastructure:
+                  environmentRef: "<+input>"
+      variables:
+      - name: "test"
+        type: "String"
+        value: "<+input>"
+  tags: {}
+  projectIdentifier: "New_Git_Exp"
+  orgIdentifier: "NandeeshTest"
+  identifier: "NginxK8sInlineManifest"
+  name: "Nginx-K8s-InlineManifest"
