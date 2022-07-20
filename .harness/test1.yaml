@@ -1,5 +1,5 @@
 pipeline:
-    name: test-1
+    name: test-new
     identifier: test1
     projectIdentifier: New_Git_Exp
     orgIdentifier: NandeeshTest
