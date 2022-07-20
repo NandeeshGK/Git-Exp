@@ -1,0 +1,27 @@
+inputSet:
+  identifier: "test"
+  name: "test"
+  orgIdentifier: "NandeeshTest"
+  projectIdentifier: "New_Git_Exp"
+  pipeline:
+    identifier: "test1"
+    stages:
+    - stage:
+        identifier: "helm"
+        template:
+          templateInputs:
+            type: "Deployment"
+            spec:
+              serviceConfig:
+                serviceRef: "K8s"
+                serviceDefinition:
+                  type: "Kubernetes"
+                  spec:
+                    artifacts:
+                      primary:
+                        type: "DockerRegistry"
+                        spec:
+                          imagePath: "library/nginx"
+                          tag: "stable-perl"
+              infrastructure:
+                environmentRef: "dev"
