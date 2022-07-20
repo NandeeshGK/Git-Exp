@@ -1,0 +1,32 @@
+inputSet:
+  identifier: "test2"
+  name: "test2"
+  orgIdentifier: "NandeeshTest"
+  projectIdentifier: "New_Git_Exp"
+  pipeline:
+    identifier: "NginxK8sInlineManifest"
+    template:
+      templateInputs:
+        stages:
+        - stage:
+            identifier: "Deployk8smanifests"
+            template:
+              templateInputs:
+                type: "Deployment"
+                spec:
+                  serviceConfig:
+                    serviceRef: "K8s"
+                    serviceDefinition:
+                      type: "Kubernetes"
+                      spec:
+                        artifacts:
+                          primary:
+                            type: "DockerRegistry"
+                            spec:
+                              tag: "stable-alpine-perl"
+                  infrastructure:
+                    environmentRef: "dev"
+        variables:
+        - name: "test"
+          type: "String"
+          value: "false"
