@@ -1,0 +1,29 @@
+pipeline:
+    name: test-1
+    identifier: test1
+    projectIdentifier: New_Git_Exp
+    orgIdentifier: NandeeshTest
+    tags: {}
+    stages:
+        - stage:
+              name: helm
+              identifier: helm
+              template:
+                  templateRef: account.Helmtestconfig
+                  versionLabel: Version1
+                  templateInputs:
+                      type: Deployment
+                      spec:
+                          serviceConfig:
+                              serviceRef: <+input>
+                              serviceDefinition:
+                                  type: Kubernetes
+                                  spec:
+                                      artifacts:
+                                          primary:
+                                              type: DockerRegistry
+                                              spec:
+                                                  imagePath: <+input>
+                                                  tag: <+input>
+                          infrastructure:
+                              environmentRef: <+input>
