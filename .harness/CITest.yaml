@@ -38,4 +38,4 @@ pipeline:
                                     command: echo "Test"
                                 failureStrategies: []
     delegateSelectors:
-        - del-test-akshay
+        - cse-ng
