@@ -1,0 +1,38 @@
+pipeline:
+    name: CI-Test
+    identifier: CITest
+    projectIdentifier: NGUsecase
+    orgIdentifier: CSE
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: account.NandeeshGithub
+                repoName: harness-cie-lab
+                build: <+input>
+    stages:
+        - stage:
+              name: CI
+              identifier: CI
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: k8sNandeesh
+                          namespace: nandeesh-cie
+                          automountServiceAccountToken: true
+                          nodeSelector: {}
+                          os: Linux
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: test
+                                identifier: test
+                                spec:
+                                    connectorRef: Harness_Docker
+                                    image: library/nginx
+                                    shell: Bash
+                                    command: echo "Test"
