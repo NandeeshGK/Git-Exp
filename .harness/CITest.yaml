@@ -21,7 +21,7 @@ pipeline:
                       type: KubernetesDirect
                       spec:
                           connectorRef: k8sNandeesh
-                          namespace: nandeesh-cie
+                          namespace: default
                           automountServiceAccountToken: true
                           nodeSelector: {}
                           os: Linux
