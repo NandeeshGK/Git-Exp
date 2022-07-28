@@ -35,7 +35,9 @@ pipeline:
                                     connectorRef: Harness_Docker
                                     image: library/nginx
                                     shell: Bash
-                                    command: echo "Test"
+                                    command: |-
+                                        echo "Test"
+                                        echo "Hi"
                                 failureStrategies: []
     delegateSelectors:
         - cse-ng
