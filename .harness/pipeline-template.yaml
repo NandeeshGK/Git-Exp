@@ -1,21 +1,29 @@
 pipeline:
     name: pipeline-template
     identifier: pipelinetemplate
-    template:
-        templateRef: org.NginxK8sHelmChartManifest
-        versionLabel: V1
-        templateInputs:
-            stages:
-                - stage:
-                      identifier: K8sHelmChartManifest
-                      template:
-                          templateInputs:
-                              type: Deployment
-                              spec:
-                                  serviceConfig:
-                                      serviceRef: <+input>
-                                  infrastructure:
-                                      environmentRef: <+input>
     tags: {}
     projectIdentifier: New_Git_Exp
     orgIdentifier: NandeeshTest
+    stages:
+        - stage:
+              name: artifact
+              identifier: artifact
+              template:
+                  templateRef: org.K8sHelmChartZManifest
+                  versionLabel: Artifact
+                  templateInputs:
+                      type: Deployment
+                      spec:
+                          serviceConfig:
+                              serviceRef: <+input>
+                              serviceDefinition:
+                                  type: Kubernetes
+                                  spec:
+                                      artifacts:
+                                          primary:
+                                              type: DockerRegistry
+                                              spec:
+                                                  imagePath: <+input>
+                                                  tag: <+input>
+                          infrastructure:
+                              environmentRef: <+input>
