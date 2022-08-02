@@ -1,0 +1,21 @@
+pipeline:
+    name: pipeline-template
+    identifier: pipelinetemplate
+    template:
+        templateRef: org.NginxK8sHelmChartManifest
+        versionLabel: V1
+        templateInputs:
+            stages:
+                - stage:
+                      identifier: K8sHelmChartManifest
+                      template:
+                          templateInputs:
+                              type: Deployment
+                              spec:
+                                  serviceConfig:
+                                      serviceRef: <+input>
+                                  infrastructure:
+                                      environmentRef: <+input>
+    tags: {}
+    projectIdentifier: New_Git_Exp
+    orgIdentifier: NandeeshTest
