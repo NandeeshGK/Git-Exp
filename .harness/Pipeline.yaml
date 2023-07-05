@@ -1,0 +1,36 @@
+template:
+  name: Pipeline
+  type: Pipeline
+  projectIdentifier: NGUsecase
+  orgIdentifier: CSE
+  tags: {}
+  spec:
+    stages:
+      - stage:
+          name: approval
+          identifier: approval
+          description: ""
+          type: Approval
+          spec:
+            execution:
+              steps:
+                - step:
+                    name: test2
+                    identifier: test
+                    type: HarnessApproval
+                    timeout: 1d
+                    spec:
+                      approvalMessage: |-
+                        Please review the following information
+                        and approve the pipeline progression
+                      includePipelineExecutionHistory: true
+                      approvers:
+                        minimumCount: 1
+                        disallowPipelineExecutor: false
+                        userGroups:
+                          - account.CustomerSuccess
+                      isAutoRejectEnabled: false
+                      approverInputs: []
+          tags: {}
+  identifier: Pipeline
+  versionLabel: v3
