@@ -17,6 +17,6 @@ template:
         spec:
           script: |-
             echo "Hi"
-            echo "test"
+            echo "test12"
       environmentVariables: []
       outputVariables: []
