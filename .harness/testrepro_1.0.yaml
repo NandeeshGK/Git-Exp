@@ -1,0 +1,21 @@
+template:
+  name: test-repro
+  identifier: testrepro
+  versionLabel: "1.0"
+  type: Step
+  projectIdentifier: NGUsecase
+  orgIdentifier: CSE
+  tags: {}
+  spec:
+    timeout: 10m
+    type: ShellScript
+    spec:
+      shell: Bash
+      executionTarget: {}
+      delegateSelectors: []
+      source:
+        type: Inline
+        spec:
+          script: echo "hi"
+      environmentVariables: []
+      outputVariables: []
