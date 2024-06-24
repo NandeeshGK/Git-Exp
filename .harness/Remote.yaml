@@ -1,0 +1,5 @@
+service:
+  name: Remote
+  identifier: Remote
+  orgIdentifier: CSE
+  projectIdentifier: NGUsecase
