@@ -3,3 +3,39 @@ service:
   identifier: Remote
   orgIdentifier: CSE
   projectIdentifier: NGUsecase
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: harnessdocs
+            type: K8sManifest
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: account.NandeeshGithub
+                  gitFetchType: Branch
+                  paths:
+                    - default-k8s-manifests/Manifests/Files
+                  repoName: harness-docs
+                  branch: main
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: account.testdockerartifactory
+                imagePath: library/nginx
+                tag: stable-alpine-perl
+                digest: ""
+              identifier: test
+              type: DockerRegistry
+      variables:
+        - name: test
+          type: String
+          description: ""
+          required: false
+          value: <+input>
+    type: Kubernetes
