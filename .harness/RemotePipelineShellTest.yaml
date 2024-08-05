@@ -33,4 +33,5 @@ pipeline:
                   template:
                     templateRef: Shell
                     versionLabel: "2.0"
+                    gitBranch: main-patch-testpipeline
         tags: {}
