@@ -27,4 +27,10 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
+              - step:
+                  name: remote
+                  identifier: remote
+                  template:
+                    templateRef: Shell
+                    versionLabel: "2.0"
         tags: {}
