@@ -18,6 +18,7 @@ template:
           script: |-
             echo "Hi"
             echo "2"
+            echo "123"
       environmentVariables: []
       outputVariables: []
   versionLabel: "2.0"
