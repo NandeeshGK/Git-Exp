@@ -37,6 +37,6 @@ template:
           variables:
             - name: test
               type: String
-              description: ""
+              description: drtghxt
               required: false
               value: sss
