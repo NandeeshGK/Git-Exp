@@ -11,7 +11,7 @@ template:
       - stage:
           name: approval
           identifier: approval
-          description: defqwerg
+          description: defqwerguggvgvyvtgyttygt
           type: Approval
           spec:
             execution:
