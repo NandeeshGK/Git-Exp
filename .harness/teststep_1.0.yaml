@@ -17,5 +17,6 @@ template:
           script: |-
             echo "Hi"
             echo "test"
+            echo "Hi"
       environmentVariables: []
       outputVariables: []
