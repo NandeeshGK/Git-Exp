@@ -1,10 +1,7 @@
 template:
-  name: Shell
-  identifier: Shell
-  versionLabel: "1.0"
+  name: teststep
+  identifier: teststep123
   type: Step
-  projectIdentifier: CDUsecases
-  orgIdentifier: default
   tags: {}
   spec:
     timeout: 10m
@@ -16,6 +13,10 @@ template:
       source:
         type: Inline
         spec:
-          script: echo "Hi"
+          script: |-
+            echo "Hi"
+            echo "test"
       environmentVariables: []
       outputVariables: []
+  versionLabel: "1.0"
+
