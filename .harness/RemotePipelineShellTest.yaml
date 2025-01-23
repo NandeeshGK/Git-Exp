@@ -35,3 +35,9 @@ pipeline:
                     versionLabel: "2.0"
                     gitBranch: main-patch-testpipeline
         tags: {}
+  variables:
+    - name: test
+      type: String
+      description: ""
+      required: false
+      value: <+input>
