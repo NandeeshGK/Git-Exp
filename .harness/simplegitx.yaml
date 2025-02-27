@@ -23,7 +23,9 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "Hi"
+                        script: |-
+                          echo "Hi"
+                          <+pipeline.branch>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
