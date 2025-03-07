@@ -1,0 +1,11 @@
+inputSet:
+  name: test
+  identifier: test
+  orgIdentifier: default
+  projectIdentifier: CDUsecases
+  pipeline:
+    identifier: RemotePipelineShellTest
+    variables:
+      - name: test
+        type: String
+        value: feef
