@@ -1,0 +1,92 @@
+pipeline:
+  name: simple
+  identifier: simple
+  projectIdentifier: NGUsecase
+  orgIdentifier: CSE
+  tags:
+    test: ""
+  stages:
+    - stage:
+        name: simple
+        identifier: simple
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "<+trigger.targetBranch>"
+                          echo  "<+secrets.getValue("account.prashcustom")>"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+                  failureStrategies:
+                    - onFailure:
+                        errors:
+                          - AllErrors
+                        action:
+                          type: Ignore
+              - step:
+                  type: Container
+                  name: Container_1
+                  identifier: Container_1
+                  spec:
+                    connectorRef: Harness_Docker
+                    image: library/nginx
+                    command: echo $env.test
+                    shell: Sh
+                    infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                        connectorRef: account.usheerdeletek8cluster
+                        namespace: default
+                        resources:
+                          limits:
+                            cpu: "0.5"
+                            memory: 500Mi
+                        annotations: {}
+                        labels: {}
+                        containerSecurityContext:
+                          capabilities:
+                            drop: []
+                            add: []
+                        nodeSelector: {}
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths: []
+                    outputVariables: []
+                    envVariables:
+                      test: <+pipeline.variables.test>
+                  timeout: 1d
+        tags: {}
+  allowStageExecutions: true
+  variables:
+    - name: test
+      type: String
+      description: ""
+      required: false
+      value: <+secrets.getValue("account.prashcustom")>
+  notificationRules:
+    - name: testwebhook
+      identifier: testwebhook
+      pipelineEvents:
+        - type: AllEvents
+      notificationMethod:
+        type: Webhook
+        spec:
+          webhookUrl: https://webhook.site/b97b6a80-42b4-435e-8b97-398ce3761e37
+          headers:
+            x-hey-header: <+secrets.getValue("account.prashcustom")>
+          executeOnDelegate: true
+      enabled: true
