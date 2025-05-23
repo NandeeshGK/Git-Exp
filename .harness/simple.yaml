@@ -15,6 +15,16 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Email
+                  name: Email_1
+                  identifier: Email_1
+                  spec:
+                    to: nandeesh.gk@harness.io
+                    cc: ""
+                    subject: <+pipeline.name>
+                    body: echo <+piepleine.name>
+                  timeout: 10m
+              - step:
                   type: ShellScript
                   name: ShellScript_1
                   identifier: ShellScript_1
