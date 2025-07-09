@@ -1,0 +1,32 @@
+inputSet:
+  name: east1
+  identifier: east1
+  orgIdentifier: CSE
+  projectIdentifier: NGUsecase
+  pipeline:
+    identifier: testdemo
+    stages:
+      - stage:
+          identifier: CD
+          type: Deployment
+          spec:
+            service:
+              serviceInputs:
+                serviceDefinition:
+                  type: Kubernetes
+                  spec:
+                    artifacts:
+                      primary:
+                        primaryArtifactRef: Nginx
+                    variables:
+                      - name: test
+                        type: String
+                        value: <+input>
+          variables:
+            - name: tag
+              type: String
+              value: dbcdnk
+    variables:
+      - name: test
+        type: String
+        value: stable
