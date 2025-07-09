@@ -1,0 +1,71 @@
+pipeline:
+  name: test-demo
+  identifier: testdemo
+  projectIdentifier: NGUsecase
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: CD
+        identifier: CD
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Kubernetes
+          service:
+            serviceRef: CD
+            serviceInputs:
+              serviceDefinition:
+                type: Kubernetes
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
+                  variables:
+                    - name: test
+                      type: String
+                      value: <+input>
+          environment:
+            environmentRef: dev
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: dev
+          execution:
+            steps:
+              - step:
+                  name: Rollout Deployment
+                  identifier: rolloutDeployment
+                  type: K8sRollingDeploy
+                  timeout: 10m
+                  spec:
+                    skipDryRun: false
+                    pruningEnabled: false
+                    delegateSelectors:
+                      - prod1usheerdel
+                contextType: Pipeline
+            rollbackSteps:
+              - step:
+                  name: Rollback Rollout Deployment
+                  identifier: rollbackRolloutDeployment
+                  type: K8sRollingRollback
+                  timeout: 10m
+                  spec:
+                    pruningEnabled: false
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
+        variables:
+          - name: tag
+            type: String
+            description: ""
+            required: false
+            value: <+input>.allowedValues(tet,yehj],dbcdnk)
+        delegateSelectors:
+          - latestdelegateprd
+  delegateSelectors:
+    - prod1usheerdel
