@@ -34,6 +34,20 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "Hi"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
                   name: Rollout Deployment
                   identifier: rolloutDeployment
                   type: K8sRollingDeploy
@@ -69,3 +83,9 @@ pipeline:
           - latestdelegateprd
   delegateSelectors:
     - prod1usheerdel
+  variables:
+    - name: test
+      type: String
+      description: ""
+      required: false
+      value: <+input>
