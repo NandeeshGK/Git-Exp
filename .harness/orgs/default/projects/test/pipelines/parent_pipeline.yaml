@@ -26,3 +26,4 @@ pipeline:
                       environmentInputs: <+input>
                       serviceOverrideInputs: <+input>
                       infrastructureDefinitions: <+input>
+        timeout: 10s
