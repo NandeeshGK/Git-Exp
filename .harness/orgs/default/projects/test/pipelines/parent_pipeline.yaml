@@ -16,14 +16,15 @@ pipeline:
           project: test
           inputs:
             identifier: child_pipeline
-            stages:
-              - stage:
-                  identifier: k8s
-                  type: Deployment
-                  spec:
-                    environment:
-                      environmentRef: <+input>
-                      environmentInputs: <+input>
-                      serviceOverrideInputs: <+input>
-                      infrastructureDefinitions: <+input>
-        tags: {}
+            template:
+              templateInputs:
+                stages:
+                  - stage:
+                      identifier: k8s
+                      type: Deployment
+                      spec:
+                        environment:
+                          environmentRef: <+input>
+                          environmentInputs: <+input>
+                          serviceOverrideInputs: <+input>
+                          infrastructureDefinitions: <+input>
