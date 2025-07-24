@@ -24,7 +24,6 @@ pipeline:
                       type: Deployment
                       spec:
                         environment:
-                          environmentRef: <+input>
-                          environmentInputs: <+input>
-                          serviceOverrideInputs: <+input>
-                          infrastructureDefinitions: <+input>
+                          environmentRef: dev
+                          infrastructureDefinitions:
+                            - identifier: dev
