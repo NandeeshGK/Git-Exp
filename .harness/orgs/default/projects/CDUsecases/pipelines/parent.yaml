@@ -1,0 +1,32 @@
+pipeline:
+  name: parent
+  identifier: parent
+  projectIdentifier: CDUsecases
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: child
+        identifier: child
+        description: ""
+        type: Pipeline
+        spec:
+          org: default
+          pipeline: childp
+          project: CDUsecases
+          inputs:
+            identifier: childp
+            template:
+              templateInputs:
+                stages:
+                  - stage:
+                      identifier: cd
+                      template:
+                        templateInputs:
+                          type: Deployment
+                          spec:
+                            environment:
+                              environmentRef: <+input>
+                              environmentInputs: <+input>
+                              serviceOverrideInputs: <+input>
+                              infrastructureDefinitions: <+input>
