@@ -1,0 +1,28 @@
+pipeline:
+  name: parent pipeline
+  identifier: parent_pipeline
+  projectIdentifier: test
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: test
+        identifier: test
+        description: ""
+        type: Pipeline
+        spec:
+          org: default
+          pipeline: child_pipeline
+          project: test
+          inputs:
+            identifier: child_pipeline
+            stages:
+              - stage:
+                  identifier: k8s
+                  type: Deployment
+                  spec:
+                    environment:
+                      environmentRef: <+input>
+                      environmentInputs: <+input>
+                      serviceOverrideInputs: <+input>
+                      infrastructureDefinitions: <+input>
