@@ -1,0 +1,21 @@
+template:
+  name: test-step
+  identifier: teststep
+  type: Step
+  tags: {}
+  spec:
+    timeout: 10m
+    type: ShellScript
+    spec:
+      shell: Bash
+      executionTarget: {}
+      delegateSelectors: []
+      source:
+        type: Inline
+        spec:
+          script: |-
+            echo "test"
+            echo "Hi"
+      environmentVariables: []
+      outputVariables: []
+  versionLabel: 1.1.1
