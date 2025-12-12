@@ -1,4 +1,3 @@
----
 pipeline:
   template:
     templateRef: "org.Nginxk8smanifests"
