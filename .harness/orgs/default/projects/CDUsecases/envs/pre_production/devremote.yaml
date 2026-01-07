@@ -1,0 +1,6 @@
+environment:
+  name: devremote
+  identifier: devremote
+  orgIdentifier: default
+  projectIdentifier: CDUsecases
+  type: PreProduction
